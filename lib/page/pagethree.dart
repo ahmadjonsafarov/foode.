@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foode/page/SIngin.dart';
 
 class Page3 extends StatefulWidget {
   const Page3({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class Page3 extends StatefulWidget {
 }
 
 class _Page3State extends State<Page3> {
+  bool remove=false;
   bool IconTrue=false;
   @override
   Widget build(BuildContext context) {
@@ -53,8 +55,11 @@ class _Page3State extends State<Page3> {
 
                 padding: EdgeInsets.symmetric(horizontal: 15,vertical: 3),
                 child: TextFormField(
+                 obscureText: remove,
+
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
+                    suffixIcon: remove ? IconButton(onPressed: () { remove=!remove;setState(() {}); }, icon: Icon(Icons.remove_red_eye),):IconButton(onPressed: () { remove=!remove;setState(() {}); }, icon: Icon(Icons.visibility_off),),
                     hintText: "Password",
                     hintStyle: TextStyle(
                       color: Color(0xffDADEE3),
@@ -161,7 +166,16 @@ class _Page3State extends State<Page3> {
                     ),
                   )
                 ],
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 48.w,bottom: 48.w,left: 106.5.h),
+                child: Row(
+                  children: [
+                    Text('Don’t have an account?',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
+                    TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context){return Sing();}));}, child: Text("Sing in",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),))
+                  ],
+                ),
+              ),
             ],
           ),
         ),
